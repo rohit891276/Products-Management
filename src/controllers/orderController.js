@@ -35,7 +35,7 @@ const createOrder = async function (req, res) {
             return res.status(400).send({ status: false, message: `The given cartId: ${cartId} is not in proper format` });
 
         //authorization
-        if (req.decodedToken != userId)
+        if (req.decodedToken.userId != userId)
             return res.status(403).send({ status: false, message: "Error, authorization failed" });
 
         // finding cart details
@@ -121,7 +121,7 @@ const updateOrder = async function (req, res) {
             return res.status(404).send({ status: false, message: `User details not found with this provided userId: ${userId}` });
 
         // Authorization 
-        if (req.decodedToken != userId)
+        if (req.decodedToken.userId != userId)
             return res.status(403).send({ status: false, message: "Error, authorization failed" });
 
         // finding order details

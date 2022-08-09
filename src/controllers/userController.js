@@ -218,8 +218,8 @@ const getUser = async function (req, res) {
             return res.status(404).send({ status: false, message: "No User found" });
         }
 
-        // authorization 
-        if (req.decodedToken != userId)
+        // // authorization 
+        if (req.decodedToken.userId != userId)
             return res.status(403).send({ status: false, message: "Error, authorization failed" })
 
         return res.status(200).send({ status: true, message: "User profile details", data: checkUserId })
@@ -255,8 +255,8 @@ const updateProfile = async function (req, res) {
             return res.status(404).send({ status: false, message: "No User found" });
         }
 
-        // Authorization
-        if (req.decodedToken != userId)
+        // // Authorization
+        if (req.decodedToken.userId != userId)
             return res.status(403).send({ status: false, message: "Error, authorization failed" });
 
         // validation for fname
@@ -386,14 +386,14 @@ const updateProfile = async function (req, res) {
 
         obj.address = {
             shipping: {
-                street: address.shipping.street || findUser.address.shipping.street,
-                city: address.shipping.city || findUser.address.shipping.city,
-                pincode: address.shipping.pincode || findUser.address.shipping.pincode
+                street: address?.shipping?.street || findUser.address.shipping.street,
+                city: address?.shipping?.city || findUser.address.shipping.city,
+                pincode: address?.shipping?.pincode || findUser.address.shipping.pincode
             },
             billing: {
-                street: address.billing.street || findUser.address.billing.street,
-                city: address.billing.city || findUser.address.billing.city,
-                pincode: address.billing.pincode || findUser.address.billing.pincode
+                street: address?.billing?.street || findUser.address.billing.street,
+                city: address?.billing?.city || findUser.address.billing.city,
+                pincode: address?.billing?.pincode || findUser.address.billing.pincode
             }
         }
 
