@@ -33,10 +33,6 @@ const createCart = async function (req, res) {
         if (!findUser)
             return res.status(404).send({ status: false, message: `User details not found with this provided userId: ${userId}` });
 
-        //authorizatiion
-        if (req.decodedToken.userId != userId)
-            return res.status(403).send({ status: false, message: "Error, authorization failed" });
-
         // finding the product
         const findProduct = await ProductModel.findOne({ _id: data.productId, isDeleted: false });
         if (!findProduct)
@@ -127,10 +123,6 @@ const updateCart = async function (req, res) {
         if (!searchUser)
             return res.status(404).send({ status: false, message: "User does not exist" })
 
-        //Authorization 
-        if (req.decodedToken.userId != userId)
-            return res.status(403).send({ status: false, message: "Error, authorization failed" })
-
         const data = req.body;
         let { cartId, productId, removeProduct } = data;
 
@@ -194,6 +186,7 @@ const updateCart = async function (req, res) {
                 }
             }
         }
+        return res.status(400).send({ status: false, message: "product deleted" })
 
     } catch (error) {
         return res.status(500).send({ status: false, message: error.message });
@@ -217,10 +210,6 @@ const getCart = async function (req, res) {
         if (!checkUserId) {
             return res.status(404).send({ status: false, message: `User details are not found with this userId ${userId}` })
         }
-
-        //authorization
-        if (req.decodedToken.userId != userId)
-            return res.status(403).send({ status: false, message: "Error, authorization failed" });
 
         let getData = await CartModel.findOne({ userId });
         if (getData.items.length == 0)
@@ -255,10 +244,6 @@ const deleteCart = async function (req, res) {
         if (!userSearch) {
             return res.status(404).send({ status: false, message: `User details are not found with this userId ${userId}` })
         }
-
-        // AUTHORISATION
-        if (req.decodedToken.userId != userId)
-            return res.status(403).send({ status: false, message: "Error, authorization failed" })
 
         // To check cart is present or not
         const cartSearch = await CartModel.findOne({ userId })

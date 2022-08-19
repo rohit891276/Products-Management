@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema({
     userId: {
         type: ObjectId,
         ref: 'User',
-         require: true
+        require: true
     },
     items: [{
         productId: {
@@ -15,8 +15,8 @@ const orderSchema = new mongoose.Schema({
         },
         quantity: {
             type: Number,
-             require: true,
-             minLength: 1
+            require: true,
+            minLength: 1
         },
         _id: false
     }],
@@ -31,7 +31,7 @@ const orderSchema = new mongoose.Schema({
     totalQuantity: {
         type: Number,
         required: true,
-        
+
     },
     cancellable: {
         type: Boolean,

@@ -3,12 +3,12 @@ const bodyParser = require('body-parser');
 const router = require('./routes/route.js');
 const mongoose = require('mongoose');
 const app = express();
-const multer = require("multer"); 
+const multer = require("multer");
 
 app.use(bodyParser.json());
-app.use(multer().any()); 
+app.use(multer().any());
 
-mongoose.connect("mongodb+srv://harsh-developer:aA12345678@cluster0.lxbes.mongodb.net/Project-5_Product-Management?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://paradox766:paradox766@cluster0.cuttx.mongodb.net/Product_Management-DB?retryWrites=true&w=majority", {
   useNewUrlParser: true
 })
   .then(() => console.log("MongoDb is connected"))

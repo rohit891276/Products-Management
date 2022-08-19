@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
-    }, 
+    },
     phone: {
         type: String,
         required: true,
@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
-    }, 
+    },
     address: {
         shipping: {
             street: {

@@ -4,7 +4,7 @@ const router = express.Router();
 
 //===============================================[ALL MODULES ARE REQUIRED HERE]===========================================================
 const { createUser, loginUser, getUser, updateProfile } = require("../controllers/userController.js");
-const { authentication } = require("../middleware/auth.js");
+const { authentication, authorization } = require("../middleware/auth.js");
 
 
 const { createProduct, getProductDetails, getProductById, deleteProduct, updateProduct } = require("../controllers/productController.js");
@@ -17,8 +17,8 @@ const { createOrder, updateOrder } = require("../controllers/orderController.js"
 
 router.post('/register', createUser);
 router.post('/login', loginUser);
-router.get('/user/:userId/profile', authentication, getUser);
-router.put('/user/:userId/profile', authentication, updateProfile);
+router.get('/user/:userId/profile', authentication, authorization, getUser);
+router.put('/user/:userId/profile', authentication, authorization, updateProfile);
 
 //===================================================[PRODUCT ROUTE HANDLER]===========================================================
 
@@ -30,15 +30,15 @@ router.put('/products/:productId', updateProduct);
 
 
 //===================================================[CART ROUTE HANDLER]===========================================================
-router.post('/users/:userId/cart', authentication, createCart);
-router.put('/users/:userId/cart', authentication, updateCart);
-router.get('/users/:userId/cart', authentication, getCart);
-router.delete('/users/:userId/cart', authentication, deleteCart);
+router.post('/users/:userId/cart', authentication, authorization, createCart);
+router.put('/users/:userId/cart', authentication, authorization, updateCart);
+router.get('/users/:userId/cart', authentication, authorization, getCart);
+router.delete('/users/:userId/cart', authentication, authorization, deleteCart);
 
 
 //===================================================[ORDER ROUTE HANDLER]===========================================================
- router.post('/users/:userId/orders', authentication, createOrder);
- router.put('/users/:userId/orders', authentication, updateOrder);
+router.post('/users/:userId/orders', authentication, authorization, createOrder);
+router.put('/users/:userId/orders', authentication, authorization, updateOrder);
 
 
 module.exports = router;

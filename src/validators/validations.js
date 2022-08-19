@@ -71,15 +71,15 @@ const isValidSizes = (size) => {
 }
 
 const alphaNumericValid = (value) => {
-    let alphaRegex =/^[a-zA-Z0-9-_ ]+$/;   
+    let alphaRegex = /^[a-zA-Z0-9-_ ]+$/;
     if (alphaRegex.test(value))
         return true;                                    // /^[- a-zA-Z'\.,][^/]{1,150}/ allows every things
 }
 
-const isValidremoveProduct = function(value) {
-    return [0,1].indexOf(value) !== -1
+const isValidremoveProduct = function (value) {
+    return [0, 1].indexOf(value) !== -1
 }
 
 
-module.exports = { isValidObjectId, isValid, isValidRequest, nameRegex, addressValid, mailRegex, mobileRegex, passwordRegex, pinValid, imageValid, isValidSizes, alphaNumericValid, isValidremoveProduct}
+module.exports = { isValidObjectId, isValid, isValidRequest, nameRegex, addressValid, mailRegex, mobileRegex, passwordRegex, pinValid, imageValid, isValidSizes, alphaNumericValid, isValidremoveProduct }
 

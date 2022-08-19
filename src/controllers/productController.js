@@ -60,6 +60,7 @@ const createProduct = async function (req, res) {
                 return res.status(400).send({ status: false, message: "isFreeShipping is boolean" });
         }
 
+        // validation for the style
         if (data.hasOwnProperty("style")) {
             if (!isValid(data.style))
                 return res.status(400).send({ status: false, message: "Product style-name is required" });
@@ -67,6 +68,7 @@ const createProduct = async function (req, res) {
                 return res.status(400).send({ status: false, message: "Please provide valid style-name of the prodduct" });
         }
 
+        // validation for the installments
         if (data.hasOwnProperty("installments")) {
             if (!isValid(data.installments))
                 return res.status(400).send({ status: false, message: "Product installments is required" });

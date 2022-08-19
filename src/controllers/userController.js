@@ -35,7 +35,7 @@ const createUser = async function (req, res) {
             return res.status(400).send({ status: false, message: "EmailId must be present" });
         if (!mailRegex(email))
             return res.status(400).send({ status: false, message: "Please enter valid email" });
-        const checkUser = await UserModel.findOne({ email: email});
+        const checkUser = await UserModel.findOne({ email: email });
         if (checkUser) {
             return res.status(400).send({ status: false, message: "EmailId already taken" });
         }
@@ -45,9 +45,9 @@ const createUser = async function (req, res) {
             return res.status(400).send({ status: false, message: "Phone number must be present" });
         if (!mobileRegex(phone))
             return res.status(400).send({ status: false, message: "Please provide valid mobile number" });
-        const checkphone = await UserModel.findOne({ phone: phone});
+        const checkphone = await UserModel.findOne({ phone: phone });
         if (checkphone) {
-                return res.status(400).send({ status: false, message: "Phone number is already taken" });
+            return res.status(400).send({ status: false, message: "Phone number is already taken" });
         }
 
 
@@ -218,10 +218,6 @@ const getUser = async function (req, res) {
             return res.status(404).send({ status: false, message: "No User found" });
         }
 
-        // // authorization 
-        if (req.decodedToken.userId != userId)
-            return res.status(403).send({ status: false, message: "Error, authorization failed" })
-
         return res.status(200).send({ status: true, message: "User profile details", data: checkUserId })
 
     } catch (error) {
@@ -254,10 +250,6 @@ const updateProfile = async function (req, res) {
         if (!findUser) {
             return res.status(404).send({ status: false, message: "No User found" });
         }
-
-        // // Authorization
-        if (req.decodedToken.userId != userId)
-            return res.status(403).send({ status: false, message: "Error, authorization failed" });
 
         // validation for fname
         if (data.hasOwnProperty("fname")) {

@@ -34,10 +34,6 @@ const createOrder = async function (req, res) {
         if (!isValidObjectId(cartId))
             return res.status(400).send({ status: false, message: `The given cartId: ${cartId} is not in proper format` });
 
-        //authorization
-        if (req.decodedToken.userId != userId)
-            return res.status(403).send({ status: false, message: "Error, authorization failed" });
-
         // finding cart details
         const findCart = await CartModel.findOne({ _id: cartId, userId: userId });
         if (!findCart)
@@ -119,10 +115,6 @@ const updateOrder = async function (req, res) {
         const findUser = await UserModel.findOne({ _id: userId });
         if (!findUser)
             return res.status(404).send({ status: false, message: `User details not found with this provided userId: ${userId}` });
-
-        // Authorization 
-        if (req.decodedToken.userId != userId)
-            return res.status(403).send({ status: false, message: "Error, authorization failed" });
 
         // finding order details
         const findOrder = await OrderModel.findOne({ _id: orderId, userId: userId })
